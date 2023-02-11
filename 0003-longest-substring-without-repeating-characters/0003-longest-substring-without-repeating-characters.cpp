@@ -13,7 +13,7 @@ public:
                     "start" and "end" pointers.       
         */
         int start = 0, end = 0 , len = 0;
-        set<int> st;
+        set<char> st;
         while(end < s.size()){
             
             if(st.find(s[end]) == st.end()){
