@@ -12,18 +12,14 @@ public:
                 c. The length of the longest substring is the maximum distance between the 
                     "start" and "end" pointers.       
         */
-        int start = 0, end = 0 , len = 0;
+        int start = 0, end =0 , len=0;
         set<char> st;
         while(end < s.size()){
-            
             if(st.find(s[end]) == st.end()){
-                
                 st.insert(s[end]);
-                end++;
-                len = max(len, end - start);
-                
-            }
-            else {
+                end++; len  = max(len , end - start);
+            }    
+            else{
                 st.erase(s[start]);
                 start++;
             }
