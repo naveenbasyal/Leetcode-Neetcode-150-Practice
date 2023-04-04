@@ -17,10 +17,8 @@ public:
         int i = 0 , j = height.size()-1;
         int ans = 0;
         while(i < j){
-            int minHeight = min(height[i] , height[j]);
-            int area = j-i;
             
-             ans = max((minHeight * area) , ans);
+             ans = max((min(height[i] , height[j]) * (j-i)) , ans);
             
             height[i] < height[j] ? i++ : j--;
         }
