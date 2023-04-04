@@ -14,23 +14,15 @@ public:
         Check: 
                 We also check if our left height is less then left++,
                 if right height is less then right++; */
-        int i = 0, j = height.size() - 1;
-int ans = 0;
-int area = (j - i) * min(height[i], height[j]);
-
-while (i < j) {
-    ans = max(ans, area);
-
-    if (height[i] < height[j]) {
-        ++i;
-    } else {
-        --j;
-    }
-    area = (j - i) * min(height[i], height[j]);
-}
-
-return ans;
-
+        int i = 0 , j = height.size()-1;
+        int ans = 0;
+        while(i < j){
+            
+             ans = max((min(height[i] , height[j]) * (j-i)) , ans);
+            
+            height[i] < height[j] ? i++ : j--;
+        }
+        return ans;
         
         
     }
