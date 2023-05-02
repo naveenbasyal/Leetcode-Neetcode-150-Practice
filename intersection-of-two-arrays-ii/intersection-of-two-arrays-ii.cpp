@@ -2,24 +2,25 @@ class Solution {
 public:
     vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
         
-        vector<int> ans;int n1 = nums1.size(), n2 = nums2.size();
+//         Create a hash map to store the frequency of elements in nums1.
+//         Iterate through nums1 and increment the count of each element in the hash map.
+//         Create a result list to store the common elements.
+//         Iterate through nums2.
+//         If the current element exists in the hash map and its count is greater than 0, add it to the result list and decrement its count in the hash map.
+// Return the result list.
+       
+        unordered_map<int,int> mp; vector<int> ans;
         
-        int i=0, j=0;
-        sort(nums1.begin(),nums1.end());
-        sort(nums2.begin(),nums2.end());
+        for(auto i:nums1){
+            mp[i]++;
+        }
         
-       while(i<n1 and j < n2){
-           if(nums1[i] < nums2[j]){
-               i++;
-           }
-           else if(nums1[i] > nums2[j]){
-               j++;
-           }
-           else{
-               ans.push_back(nums1[i]);
-               i++,j++;
-           }
-       }
+        for(auto j:nums2){
+            if(mp[j] > 0){
+                ans.push_back(j);
+                mp[j]--; //decrement its count in the hash map
+            }
+        }
         return ans;
         
     }
