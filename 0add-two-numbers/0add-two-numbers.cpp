@@ -24,8 +24,8 @@ public:
                 carry+= l2->val;
                 l2 = l2 ->next;
             }
-            curr->next = new ListNode(carry%10);
-            curr = curr->next;
+            curr->next = new ListNode(carry%10);//to get the last digit eg:- 12 % 10 = 2
+            curr = curr->next; //to get the first digit like:- 12 % 10 = 1
             carry= carry/10;
         }
         return dummy->next;
