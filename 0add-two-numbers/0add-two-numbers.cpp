@@ -9,18 +9,6 @@
  * };
  */
 class Solution {
-private:
-    ListNode* reverse(ListNode* head){
-        ListNode* prev = NULL;
-        ListNode* curr = head;
-        while(curr!=NULL){
-            ListNode* currNext = curr->next;
-            curr->next = prev;
-            prev = curr;
-            curr = currNext;
-        }
-        return prev;
-    }
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         // l1 = reverse(l1); l2 = reverse(l2);
