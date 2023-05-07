@@ -14,14 +14,6 @@ public:
     int maxDepth(TreeNode* root) {
         if(root == NULL) return 0;
         
-        //recursively finding the height of left and right subtree
-        int leftHeight = maxDepth(root->left);
-        int rightHeight = maxDepth(root->right);
-        
-        int ans = max(leftHeight, rightHeight) + 1; //1 is for counting root node itself
-        
-        return ans;
-        
-        
+        return max(maxDepth(root->left),maxDepth(root->right)) + 1;
     }
 };
