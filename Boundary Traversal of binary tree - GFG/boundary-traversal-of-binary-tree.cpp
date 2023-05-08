@@ -105,30 +105,29 @@ struct Node
 
 class Solution {
 public:
+
     void traverseLeft(Node* root , vector<int> &ans){
-        if((root == NULL) or (root->left == NULL and root->right == NULL)) return;
-        
+        if(root == NULL or root->left == NULL and root->right == NULL) return;
         ans.push_back(root->data);
         if(root->left){
-           traverseLeft(root->left,ans); 
+            traverseLeft(root->left , ans);
         }
         else{
-            traverseLeft(root->right,ans);
+            traverseLeft(root->right , ans);
         }
     }
     void traverseLeaf(Node* root , vector<int> &ans){
-        if(root==NULL) return;
+        if(root == NULL) return;
         if(root->left == NULL and root->right == NULL){
             ans.push_back(root->data);
-            return;
         }
-        traverseLeaf(root->left,ans);
-        traverseLeaf(root->right,ans);
+        traverseLeaf(root->left, ans);
+        traverseLeaf(root->right , ans);
     }
     void traverseRight(Node* root , vector<int> &ans){
-        if( (root== NULL) or(root->left == NULL and root->right ==NULL)) return;
+        if(root == NULL or root->left == NULL and root->right == NULL) return;
         if(root->right){
-            traverseRight(root->right,ans); // traverse to right till you reach 1 step above of leaf node ;
+            traverseRight(root->right,ans);
         }
         else{
             traverseRight(root->left,ans);
@@ -140,16 +139,14 @@ public:
         vector<int> ans;
         if(root == NULL) return ans;
         ans.push_back(root->data);
-        //store left part
-        traverseLeft(root->left,ans);
-        //store leaf( 2 jga ke leaf nodes honge , left subtree ke or right subtree ke !!)
-        //lead nodes of left subtree
-        traverseLeaf(root->left,ans);
-        //right subtree
-        traverseLeaf(root->right,ans);
+        // Step1 - Traverse left part
+        traverseLeft(root->left , ans);
+        //Step2 - Traverse Leaf nodes (Left and Right both)
+        traverseLeaf(root->left , ans);
+        traverseLeaf(root->right , ans);
+        //Step3 - Traverse right part
+        traverseRight(root->right , ans);
         
-        // store right part;
-        traverseRight(root->right,ans);
         return ans;
     }
 };
