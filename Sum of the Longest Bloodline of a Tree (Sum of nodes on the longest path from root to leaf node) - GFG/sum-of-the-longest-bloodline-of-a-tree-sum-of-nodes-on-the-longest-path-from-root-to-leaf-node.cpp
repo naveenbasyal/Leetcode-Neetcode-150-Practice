@@ -120,13 +120,13 @@ public:
     
     void getSum(Node* root,int len,int &maxLen,int sum,int &maxSum){
         if(root == NULL){
-            if(len > maxLen){
+            if(len >= maxLen){
                 maxLen = len;
                 maxSum = sum;
             }
-            else if(len == maxLen){
-                maxSum = max(sum,maxSum);
-            }
+            // else if(len == maxLen){
+                // maxSum = max(sum,maxSum);
+            // }
             return;
         }
         sum += root->data;
