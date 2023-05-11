@@ -11,23 +11,20 @@
  */
 class Solution {
 public:
-    // Brute Force Code
-    int getPos(vector<int>& inorder,int node,int n){
+    // This is Optimal Code, check prevb code for Brute Force
+    map<int,int> mp;
+    void createInorderMapping(vector<int> &inorder, int n){
         for(int i = 0; i < n; i++){
-            if(inorder[i] == node){
-                return i;
-            }
-        }    
-        return -1;
+            mp[inorder[i]] = i;
+        }
     }
-    
     TreeNode* helper(vector<int>& preorder , vector<int>& inorder, int &id , int inLeft , int inRight , int n){
         //base 
         if(id >= n || inLeft > inRight) return NULL;
         
         int node = preorder[id++];
         TreeNode* root = new TreeNode(node);
-        int pos = getPos(inorder , node , n);
+        int pos = mp[node];
         
         root->left = helper(preorder , inorder , id , inLeft , pos - 1 , n);
         root->right = helper(preorder , inorder , id , pos + 1 , inRight , n);
@@ -37,7 +34,8 @@ public:
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
         int n = preorder.size();
         int id = 0 , inLeft = 0 , inRight = n - 1 ;
-        
+        //creating node to index mapping
+        createInorderMapping(inorder , n);
         TreeNode* root = helper(preorder , inorder , id , inLeft , inRight , n);
         return root;
     }
