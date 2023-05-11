@@ -23,7 +23,7 @@ public:
     
     TreeNode* helper(vector<int>& preorder , vector<int>& inorder, int &id , int inLeft , int inRight , int n){
         //base 
-        if(id > n || inLeft > inRight) return NULL;
+        if(id >= n || inLeft > inRight) return NULL;
         
         int node = preorder[id++];
         TreeNode* root = new TreeNode(node);
