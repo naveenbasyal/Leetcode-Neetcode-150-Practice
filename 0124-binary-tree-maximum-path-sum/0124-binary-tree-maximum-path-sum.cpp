@@ -21,9 +21,7 @@ public:
         int right = max(solve(root->right) , 0);
         int sum = root->val + left + right;
         
-        if(sum > maxSum){
-            maxSum = sum;
-        }
+        maxSum = max(maxSum , sum);
         
         return root->val + max(left , right);
     }
