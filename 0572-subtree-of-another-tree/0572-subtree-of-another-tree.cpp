@@ -26,6 +26,10 @@ public:
         if(!root or !subRoot){
             return root == subRoot;
         }
-        return isIdentical(root,subRoot) or isSubtree(root->left,subRoot) or isSubtree(root->right,subRoot);
+         // If subRoot is identical to root, return true
+        if(isIdentical(root, subRoot)) {
+            return true;
+        }
+        return isSubtree(root->left,subRoot) or isSubtree(root->right,subRoot);
     }
 };
