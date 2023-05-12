@@ -10,26 +10,24 @@
  * };
  */
 class Solution {
-    
 public:
     
-    bool isIdentical(TreeNode*root, TreeNode* subRoot){
-        if(!root or !subRoot){
-            return root == subRoot;
-        }
+    bool isIdentical(TreeNode* root, TreeNode* subRoot){
         
-        return root->val == subRoot->val and 
-            isIdentical(root->left,subRoot->left) and isIdentical(root->right,subRoot->right);
+        if(!root or !subRoot) return root == subRoot;
+        
+        // if(root->val == subRoot->val) return true;
+        
+        return root->val == subRoot->val and isIdentical(root->left , subRoot->left) and isIdentical(root->right, subRoot->right);
+        
     }
     
     bool isSubtree(TreeNode* root, TreeNode* subRoot) {
-        if(!root or !subRoot){
-            return root == subRoot;
-        }
-         // If subRoot is identical to root, return true
-        if(isIdentical(root, subRoot)) {
-            return true;
-        }
-        return isSubtree(root->left,subRoot) or isSubtree(root->right,subRoot);
+        if(root == NULL or subRoot == NULL) return root == subRoot;
+        
+        if(isIdentical(root , subRoot)) return true;
+        
+        return isSubtree(root->left , subRoot) or isSubtree(root->right , subRoot);
+        
     }
 };
