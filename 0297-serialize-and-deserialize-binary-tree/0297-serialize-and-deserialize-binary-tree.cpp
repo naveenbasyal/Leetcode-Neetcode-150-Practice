@@ -8,47 +8,40 @@
  * };
  */
 class Codec {
-private: 
-    // Step1: do preorder traversal and make sure when its leaf node you should add its left and right nodes as null and store all the nodes in the string.
-    // For ex:- from the exampl1 : the basic preorder would be : 
-    // Simple Preorder: 1 , 2 , 3 , null , null , 4 , 5 
-    // but we need to write the null part also of the leaf nodes like:
-    // 1 , 2 , null , null , 3 , 4 , null , null , 5 , null , null
-    // and then we push the string's data in the queue seperated by comma.
-    // after that we start building our tree
-    
+public:
+
+
+    string serialize(TreeNode* root) {
+        
+        if(root == NULL) return "null,";
+        
+        string left = serialize(root->left);
+        string right = serialize(root->right);
+        return to_string(root->val) + "," + left + right;
+        
+    }
+
     TreeNode* buildTree(queue<string> &q){
-        string curr = q.front();
+        string s = q.front();
         q.pop();
-        if(curr == "null") return NULL;
-        TreeNode* root = new TreeNode(stoi(curr));
+         if(s == "null"){
+             return NULL;
+         }
+        TreeNode* root = new TreeNode(stoi(s));
         root->left = buildTree(q);
         root->right = buildTree(q);
-        
         return root;
     }
     
-public:
-    
-    
-    string serialize(TreeNode* root) {
-        if(root == NULL) return "null,";
-        
-        string leftSide = serialize(root->left);
-        string rightSide = serialize(root->right);
-        
-        return to_string(root->val) + "," + leftSide + rightSide; //preorder: root->left->right
-    }
-
-    
     TreeNode* deserialize(string data) {
+        string s="";
         queue<string> q;
-        string s = "";
-        for(auto i : data){
+        
+        for(auto i:data){
             if(i == ','){
                 q.push(s);
-                s = "";
-                continue;
+                s="";
+                continue;// this is to not include comma(,) in the string s or queue(q)
             }
             s += i;
         }
