@@ -15,6 +15,7 @@ public:
     int maxSum = INT_MIN;
     
     int solve(TreeNode* root){    
+        
         if(root == NULL) return NULL;
             
         int leftSum = max(solve(root->left) , 0);
@@ -22,7 +23,6 @@ public:
         int sum = root->val + leftSum + rightSum;
         
         maxSum = max(maxSum , sum);
-        
         return root->val + max(leftSum , rightSum);
     }
     
