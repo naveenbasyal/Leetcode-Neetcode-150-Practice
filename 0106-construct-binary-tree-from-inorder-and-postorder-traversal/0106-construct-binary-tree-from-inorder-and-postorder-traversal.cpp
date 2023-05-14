@@ -11,39 +11,32 @@
  */
 class Solution {
 public:
-    map<int,int> mp;
-    void createMapping(vector<int>& inorder, int n){
-        for(int i = 0; i < n; i++){
-            mp[inorder[i]] = i;
-        } 
+    map<int , int> nodeToIndex;
+    
+    void createMapping(vector<int>& inorder , int size){
+        for(int i = 0; i < size; i++){
+            nodeToIndex[inorder[i]] = i;
+        }
     }
-    TreeNode* solve(vector<int>& inorder, vector<int>& postorder , int &id , int inleft , int inright , int n){
-        //base
-        if(inleft > inright) return NULL;
+    
+    TreeNode* solve(vector<int>& postorder , int &id , int left, int right, int size){
+        if(left > right) return NULL; 
         
-        int node = postorder[id--];
-        int pos = mp[node];
-        TreeNode* root = new TreeNode(node);
+        int data = postorder[id--];
+        int pos = nodeToIndex[data];//getting the pos of the curr element left and right part of root or node.
+        TreeNode* root = new TreeNode(data);
         
-        root->right = solve(inorder , postorder , id , pos+1 , inright , n);
-        root->left = solve(inorder , postorder , id , inleft , pos - 1 , n);
+        root->right = solve(postorder, id, pos + 1 , right, size);
+        root->left = solve(postorder, id, left, pos - 1, size);
+        
         return root;
-        
     }
+    
     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
-        int n = inorder.size();
-        int id = n-1 , inleft = 0 , inright = n-1;
+        int size = inorder.size();
+        int id = size - 1 , left = 0 , right = size - 1;
+        createMapping(inorder , size);
         
-        createMapping(inorder,n);
-        
-        TreeNode* root = solve(inorder,postorder,id,inleft,inright,n);
-        
-        return root;
-        
+        return solve(postorder , id, left , right , size);
     }
 };
-
-
-
-
-
