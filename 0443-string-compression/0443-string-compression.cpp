@@ -28,9 +28,9 @@ public:
             str+=chars[chars.size() -1];
         }
          int j = 0;
-        for (int i = 0; j < str.size(); i++) {
+        for (int i = 0; j < str.size(); i++,j++) {
             chars[i] = str[j];
-            j++;
+            // j++;
         }
     
         
