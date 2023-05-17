@@ -12,7 +12,7 @@
 class Solution {
 public:
     
-    void getPath(TreeNode* root,vector<vector<int>> &ans ,vector<int> &path,int &sum, int targetSum){
+    void getPath(TreeNode* root,vector<vector<int>> &ans ,vector<int> path,int sum, int targetSum){
         if(root == NULL) return;
         sum += root->val;
         path.push_back(root->val);
@@ -23,8 +23,8 @@ public:
         getPath(root->left , ans, path, sum , targetSum);
         getPath(root->right, ans, path, sum , targetSum);
         
-        path.pop_back();
-        sum-= root->val;
+        // path.pop_back();
+        // sum-= root->val;
         
     }
     
