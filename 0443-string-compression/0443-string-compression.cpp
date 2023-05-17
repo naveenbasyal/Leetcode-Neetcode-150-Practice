@@ -29,7 +29,7 @@ public:
         }
          int j = 0;
         for (int i = 0; j < str.size(); i++,j++) {
-            chars[i] = str[j];
+            chars[i] = str[i];
             // j++;
         }
     
