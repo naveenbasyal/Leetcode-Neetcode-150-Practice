@@ -10,11 +10,8 @@ public:
         for(auto i:mp){
             ans.push_back(i.second);
         }
-        sort(ans.begin(),ans.end());
-        for(int i = 0; i < ans.size() - 1 ; i++){
-            if(ans[i] == ans[i+1]) return false;
-        }
-        return true;
+        set<int> st(ans.begin(),ans.end());
         
+        return st.size() == ans.size();        
     }
 };
